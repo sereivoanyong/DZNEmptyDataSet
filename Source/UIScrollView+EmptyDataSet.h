@@ -15,8 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol DZNEmptyDataSetSource;
 @protocol DZNEmptyDataSetDelegate;
 
-#define DZNEmptyDataSetDeprecated(instead) DEPRECATED_MSG_ATTRIBUTE(" Use " # instead " instead")
-
 /**
  A drop-in UITableView/UICollectionView superclass category for showing empty datasets whenever the view has no content to display.
  @discussion It will work automatically, by just conforming to DZNEmptyDataSetSource, and returning the data you want to show.
@@ -144,7 +142,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param scrollView A scrollView subclass object informing the delegate.
  @return The offset for vertical and horizontal alignment.
  */
-- (CGPoint)offsetForEmptyDataSet:(UIScrollView *)scrollView DZNEmptyDataSetDeprecated(-verticalOffsetForEmptyDataSet:);
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView;
 
 /**
@@ -221,21 +218,6 @@ NS_ASSUME_NONNULL_BEGIN
  Use this method either to resignFirstResponder of a textfield or searchBar.
  
  @param scrollView A scrollView subclass informing the delegate.
- */
-- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView DZNEmptyDataSetDeprecated(-emptyDataSet:didTapView:);
-
-/**
- Tells the delegate that the action button was tapped.
- 
- @param scrollView A scrollView subclass informing the delegate.
- */
-- (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView DZNEmptyDataSetDeprecated(-emptyDataSet:didTapButton:);
-
-/**
- Tells the delegate that the empty dataset view was tapped.
- Use this method either to resignFirstResponder of a textfield or searchBar.
- 
- @param scrollView A scrollView subclass informing the delegate.
  @param view the view tapped by the user
  */
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view;
@@ -277,7 +259,5 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)emptyDataSetDidDisappear:(UIScrollView *)scrollView;
 
 @end
-
-#undef DZNEmptyDataSetDeprecated
 
 NS_ASSUME_NONNULL_END
