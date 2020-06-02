@@ -723,8 +723,22 @@ Class dzn_baseClassToSwizzleForTarget(id target)
 
 - (void)didMoveToSuperview
 {
-    CGRect superviewBounds = self.superview.bounds;
-    self.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(superviewBounds), CGRectGetHeight(superviewBounds));
+    if (!self.superview) {
+        return;
+    }
+    if (@available(iOS 11.0, tvOS 11.0, *)) {
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+        UILayoutGuide *safeAreaLayoutGuide = self.superview.safeAreaLayoutGuide;
+        [NSLayoutConstraint activateConstraints:@[
+            [self.topAnchor constraintEqualToAnchor:safeAreaLayoutGuide.topAnchor],
+            [self.leftAnchor constraintEqualToAnchor:safeAreaLayoutGuide.leftAnchor],
+            [safeAreaLayoutGuide.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+            [safeAreaLayoutGuide.rightAnchor constraintEqualToAnchor:self.rightAnchor]
+        ]];
+    } else {
+        CGRect superviewBounds = self.superview.bounds;
+        self.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(superviewBounds), CGRectGetHeight(superviewBounds));
+    }
     
     void(^fadeInBlock)(void) = ^{ self->_contentView.alpha = 1.0; };
     
