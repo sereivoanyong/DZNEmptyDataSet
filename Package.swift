@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
   name: "DZNEmptyDataSet",
   platforms: [
-    .iOS(.v8),
+    .iOS(.v9),
     .tvOS(.v9),
   ],
   products: [
@@ -12,6 +12,5 @@ let package = Package(
   ],
   targets: [
     .target(name: "DZNEmptyDataSet", path: ".", sources: ["Source"], publicHeadersPath: "Source"),
-  ],
-  swiftLanguageVersions: [.v5]
+  ]
 )
