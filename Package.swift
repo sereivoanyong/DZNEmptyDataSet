@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 import PackageDescription
 
 let package = Package(
@@ -11,6 +11,20 @@ let package = Package(
     .library(name: "DZNEmptyDataSet", targets: ["DZNEmptyDataSet"]),
   ],
   targets: [
-    .target(name: "DZNEmptyDataSet", path: ".", sources: ["Source"], publicHeadersPath: "Source"),
+    .target(
+      name: "DZNEmptyDataSet",
+      path: ".",
+      exclude: [
+        "DZNEmptyDataSet",
+        "Dangerfile",
+        "DZNEmptyDataSet.podspec",
+        "Gemfile",
+        "Gemfile.lock",
+        "LICENSE",
+        "README.md"
+      ],
+      sources: ["Source"],
+      publicHeadersPath: "Source"
+    ),
   ]
 )
